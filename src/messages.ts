@@ -1,6 +1,6 @@
 import { sendMessage, storeItem, getProfile, getStorageEvents } from "./matrixClientRequests";
 
-const register = async (sender, message, roomId) => {
+const register = async (sender: string, message: string, roomId: string) => {
     const profileResponse = await getProfile(sender);
     const { displayname } = await profileResponse.json();
 
@@ -17,13 +17,12 @@ const register = async (sender, message, roomId) => {
     sendMessage(roomId, `🤖studio61000🤖: I have registered that ${bio.replaceAll("I", "you")}`);
 }
 
-const search = async (message, roomId) => {
+const search = async (message: string, roomId: string) => {
     const need = message.split("Studio61000 please help I need a ")[1];
 
     const storageResponse = await getStorageEvents();
     const storedItems = await storageResponse.json();
 
-    console.log(storedItems)
     const results = [];
 
     for (const item of storedItems.chunk) {
