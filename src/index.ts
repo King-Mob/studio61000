@@ -13,7 +13,7 @@ const client = sdk.createClient({
 });
 
 const start = async () => {
-    await client.startClient({ initialSyncLimit: 10 });
+    await client.startClient();
 
     client.once(ClientEvent.Sync, async (state, prevState, res) => {
         // state will be 'PREPARED' when the client is ready to use

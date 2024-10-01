@@ -22,7 +22,7 @@ export const sendMessage = (roomId: string, message: string, context = {}) => {
 
 export const storeItem = (item: item) => {
     return fetch(`https://matrix.${homeserver}/_matrix/client/v3/rooms/${member_storage_room_id}/send/${item.type}`, {
-        method: "PUT",
+        method: "POST",
         body: JSON.stringify(item),
         headers: {
             'Content-Type': 'application/json',
@@ -38,4 +38,12 @@ export const getStorageEvents = () => {
             "Authorization": `Bearer ${auth_token}`
         }
     });
+}
+
+export const getProfile = async (userId: string) => {
+    return fetch(`https://matrix.${homeserver}/_matrix/client/v3/profile/${userId}`, {
+        headers: {
+            Authorization: `Bearer ${auth_token}`
+        }
+    })
 }
