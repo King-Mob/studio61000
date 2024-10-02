@@ -10,6 +10,16 @@ const hello = async (sender: string, roomId: string) => {
     sendMessage(roomId, `🤖Studio61000🤖: hello ${name}, it's nice to meet you`);
 }
 
+const help = async (roomId: string) => {
+    const helpMessages = [
+        "I'm a bot that suggests members of studio61 who might be able to help with a query.",
+        "Send 'Studio61000 please find your-query-here' for me to look in my list of members.",
+        "Send 'Studio61000 please register me your-bio-here' for me to add you to my list of members."
+    ];
+
+    sendMessage(roomId, `🤖Studio61000🤖: ${helpMessages.join("\n- ")}`);
+}
+
 const register = async (sender: string, message: string, roomId: string) => {
     const profileResponse = await getProfile(sender);
     const { displayname } = await profileResponse.json() as profile;
@@ -63,6 +73,10 @@ const handleMessage = async (event) => {
 
     if (message.includes("studio61000 hello")) {
         hello(sender, room_id);
+    }
+
+    if (message.includes("studio61000 help")) {
+        help(room_id);
     }
 
     if (message.includes("studio61000 please register me")) {
