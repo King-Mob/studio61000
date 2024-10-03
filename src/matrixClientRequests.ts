@@ -47,3 +47,17 @@ export const getProfile = async (userId: string) => {
         }
     })
 }
+
+export const redactEvent = async (eventId: string, redactionReason: string) => {
+    const txn = Date.now();
+
+    return fetch(`https://matrix.${homeserver}/_matrix/client/v3/rooms/${member_storage_room_id}/redact/${eventId}/${txn}`, {
+        method: "PUT",
+        body: JSON.stringify({
+            "reason": redactionReason
+        }),
+        headers: {
+            Authorization: `Bearer ${auth_token}`
+        }
+    })
+}

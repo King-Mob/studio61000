@@ -1,4 +1,4 @@
-import { IClearEvent } from "matrix-js-sdk";
+import { IEvent } from "matrix-js-sdk";
 
 export type item = {
     type: string;
@@ -10,5 +10,5 @@ export type profile = {
 }
 
 export type EventTimeline = {
-    chunk: IClearEvent[]
+    chunk: IEvent[]
 }
